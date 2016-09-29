@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Books</title>
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="node_modules/font-awesome/css/font-awesome.css">
+
+
+</head>
+<body>
+
+<div id="hello" class="container">
+    <div class="row">
+        <h1>{{ msg }}</h1>
+        <input class="form-control" type="text" v-model="msg">
+    </div>
+    <div class="row">
+        <h1>My List</h1>
+        <ul>
+            <li v-for="person in people">{{person.name}}</li>
+        </ul>
+    </div>
+    <div class="row">
+        <h1>My List Elements</h1>
+        <input class="form-control" type="text" v-model="newElement" v-on:keyup.enter="addElement">
+        <ul>
+            <li v-for="element in elements">{{element.title}}<a href="#" v-on:click="removeElement($event, $index)">X</a></li>
+        </ul>
+    </div>
+    <div class="row">
+        <h1>v-on</h1>
+        <button v-on:click="myClick">Click</button>
+        <button @click="myClick">@Click</button>
+        <input  type="text" @keyup="myKeyUp">
+        <input  type="text" @keyup.enter="myKeyUp">
+        <input  type="text" @keyup.13="myKeyUp">
+    </div>
+    <div class="row">
+        <h1>v-model</h1>
+        <ul>
+            <li v-for="myList in myListForm">
+                {{myList.name}} - {{myList.email}}
+            </li>
+        </ul>
+        <input type="text" v-model="myForm.name" placeholder="name">
+        <input type="text" v-model="myForm.email" placeholder="email">
+        <button @click="addForm">Add</button>
+    <div>
+    <div class="row">
+        <h1>v-bind</h1>
+        <p v-bind:class="{'text-danger' : 2 === 1, 'text-info' : true}">text</p>
+        <p :class="{'text-danger' : 2 === 1, 'text-info' : true}">:text</p>
+        <p :style="{fontSize: 30 + 'px'}">Style</p>
+        <p :style="{'font-size': 30 + 'px'}">Style</p>
+        <p :style="[objectA, objectB]">Object</p>
+        <p v-bind:="{id: 1===1, name: true}">bind attr</p>
+    </div>
+</div>
+
+<script type="text/javascript" src="node_modules/vue/dist/vue.js"></script>
+<script type="text/javascript" src="node_modules/vue-resource/dist/vue-resource.js"></script>
+<script type="text/javascript" src="js/app-base.js"></script>
+</body>
+</html>
